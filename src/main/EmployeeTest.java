@@ -21,6 +21,11 @@ class EmployeeTest {
         supervisor = new Employee(2564.0F, "EUR", 0.4F, EmployeeType.Supervisor);
         manager = new Employee(4150.0F, "USD", 0.8F, EmployeeType.Manager);
     }
+    
+    @Test
+    void testConstructor() {
+    	Assertions.assertNull(new Employee(1354.0F, "",0.2f,EmployeeType.Worker));
+    }
 
 	@Test
 	void testCsWorkerImpar() {
@@ -40,7 +45,6 @@ class EmployeeTest {
         // Asumimos que el mes es par
         int month = localDate.getMonthValue();
         Assertions.assertTrue(month % 2 == 0);
-
         float expected = (2000.0F * 0.95F) + (0.2F * 0.35F);
         float actual = supervisor.cs();
         Assertions.assertEquals(expected, actual, 0.001);
@@ -52,7 +56,6 @@ class EmployeeTest {
         // Asumimos que el mes es impar
         int month = localDate.getMonthValue();
         Assertions.assertTrue(month % 2 != 0);
-
         float expected = 3000.0F + (0.3F * 0.7F) + (386.0F / 12 * 2);
         float actual = manager.cs();
         Assertions.assertEquals(expected, actual, 0.001);
